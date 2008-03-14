@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<project name="safesax" default="test">
+
+  <import file="common.xml"/>
+
+  <path id="compile.classpath">
+    <fileset dir="${lib.dir}" includes="*.jar"/>
+  </path>
+
+  <target name="jar" depends="compile"
+       description="Build jar.">
+    <jar destfile="${build.dir}/safesax-${version}.jar" 
+        basedir="${build.dir}/classes"/>
+  </target>
+
+  <target name="javadoc"
+      description="Generate Javadocs.">
+    <mkdir dir="${build.dir}/javadoc"/>
+    <javadoc packagenames="${javadoc.packagenames}"
+         destdir="${build.dir}/javadoc"
+         author="false"
+         protected="true"
+         windowtitle="SafeSax API">
+      <sourcepath>
+        <pathelement location="${src.dir}"/>
+      </sourcepath>
+      <classpath refid="compile.classpath"/>
+      <link href="http://java.sun.com/javase/6/docs/api"/>
+    </javadoc>
+  </target>
+
+</project>
